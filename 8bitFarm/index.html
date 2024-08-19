@@ -12,7 +12,7 @@
             padding: 0;
             overflow: hidden;
             background: #87CEEB;
-            font-family: 'Press Start 2P', cursive; /* Apply the 8-bit font */
+            font-family: 'Press Start 2P', cursive; /* 8-bit font */
         }
 
         canvas {
@@ -29,13 +29,26 @@
             align-items: center;
             font-size: 32px; /* Increased size */
             color: white;
-            font-family: 'Press Start 2P', cursive; /* Apply the 8-bit font */
         }
 
         #balance img {
             width: 48px; /* Increased size */
             height: 48px; /* Increased size */
             margin-right: 10px;
+        }
+
+        #version {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: white;
+            animation: flash 1s infinite alternate;
+        }
+
+        @keyframes flash {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
 </head>
@@ -45,6 +58,7 @@
         <img src="coin.png" alt="Coin">
         <span id="balanceAmount">0</span>
     </div>
+    <div id="version">Version: 1.0</div>
 
     <script src="game.js"></script>
 </body>
