@@ -22,27 +22,25 @@
             position: absolute;
             top: 10px;
             left: 10px;
+            display: flex;
+            align-items: center;
             font-size: 24px;
             color: white;
         }
 
-        #fullscreenBtn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            padding: 10px;
-            background-color: black;
-            color: blue;
-            border-radius: 10px;
-            cursor: pointer;
+        #balance img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
-    <div id="balance">Balance: $0</div>
-    <button id="fullscreenBtn">Fullscreen</button>
+    <div id="balance">
+        <img src="coin.png" alt="Coin">
+        <span id="balanceAmount">0</span>
+    </div>
 
     <script src="game.js"></script>
 </body>
