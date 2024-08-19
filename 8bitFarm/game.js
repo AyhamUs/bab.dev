@@ -62,6 +62,7 @@ function updateSeeds() {
 }
 
 function drawCharacter() {
+    // Draw the sprite as it is, without any transparency manipulation
     ctx.drawImage(character.sprite, character.x, character.y, character.width, character.height);
 }
 
