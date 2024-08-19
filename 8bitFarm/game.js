@@ -18,16 +18,6 @@ character.sprite.src = 'character.png';
 
 const seeds = [];
 
-document.getElementById('fullscreenBtn').addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-    }
-});
-
 document.addEventListener('keydown', (e) => {
     switch (e.key) {
         case 'ArrowUp':
@@ -66,7 +56,7 @@ function updateSeeds() {
         if (seeds[i].countdown <= 0) {
             seeds.splice(i, 1);
             balance += 10;
-            document.getElementById('balance').textContent = `Balance: $${balance}`;
+            document.getElementById('balanceAmount').textContent = balance;
         }
     }
 }
