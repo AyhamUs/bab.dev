@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This device is managed by Ayham Issa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1 {
+            color: #00aaff;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #2e2e2e;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        ul {
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #b0b0b0;
+        }
+        .switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #00aaff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .light-mode {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .light-mode .container {
+            background: #fff;
+            color: #333;
+        }
+        .light-mode .switch {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="switch" onclick="toggleMode()">Switch to Light Mode</div>
+    <div class="container">
+        <h1>This device is managed by Ayham Issa</h1>
+        <ul>
+            <li><strong>Use Strong Passwords:</strong> Create passwords that are long, complex, and unique for different accounts.</li>
+            <li><strong>Enable Two-Factor Authentication (2FA):</strong> Add an extra layer of security to your accounts by enabling 2FA wherever possible.</li>
+            <li><strong>Be Cautious with Emails and Links:</strong> Avoid clicking on links or downloading attachments from unknown or unsolicited emails.</li>
+            <li><strong>Keep Software Updated:</strong> Regularly update your operating system, browsers, and applications to patch security vulnerabilities.</li>
+            <li><strong>Use Antivirus Software:</strong> Install reputable antivirus software and keep it updated to protect against malware and viruses.</li>
+            <li><strong>Be Aware of Phishing Scams:</strong> Learn how to recognize phishing attempts and avoid providing personal information to suspicious sources.</li>
+            <li><strong>Secure Your Wi-Fi Network:</strong> Use strong passwords for your Wi-Fi network and change the default settings to enhance security.</li>
+            <li><strong>Backup Your Data:</strong> Regularly backup important files to an external drive or cloud service to prevent data loss.</li>
+            <li><strong>Practice Safe Social Media Usage:</strong> Be mindful of the information you share on social media and adjust privacy settings to control who can see your posts.</li>
+            <li><strong>Ensure MullvadVPN is Running:</strong> Make sure MullvadVPN is active and connected to protect your online activities.</li>
+            <li><strong>Verify Eset Endpoint Security:</strong> Confirm that Eset Endpoint Security is active and enabled to safeguard your system from threats.</li>
+        </ul>
+        <div class="footer">
+            <p>Stay safe online! For more tips, visit <a href="https://www.staysafeonline.org" target="_blank">StaySafeOnline.org</a>.</p>
+        </div>
+    </div>
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            const switchElement = document.querySelector('.switch');
+            if (document.body.classList.contains('light-mode')) {
+                switchElement.textContent = 'Switch to Dark Mode';
+            } else {
+                switchElement.textContent = 'Switch to Light Mode';
+            }
+        }
+    </script>
+</body>
+</html>
