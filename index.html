@@ -5,130 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022" crossorigin="anonymous"></script>
   <title>Catch the Target Game</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #282c34;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-    }
-
-    nav {
-      width: 100%;
-      background: #333;
-      padding: 10px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      margin-top: 80px;
-      width: 100%;
-      max-width: 800px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1, h2 {
-      margin: 10px;
-    }
-
-    #gameContainer {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      height: 400px;
-      border: 2px solid white;
-      background: #444;
-      margin: 20px auto;
-      overflow: hidden;
-      border-radius: 10px;
-    }
-
-    .target {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: red;
-      border-radius: 50%;
-      cursor: pointer;
-      animation: move 2s linear infinite;
-    }
-
-    #score, #timer {
-      margin-top: 10px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 18px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: darkred;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: gray;
-    }
-
-    footer a {
-      color: lightgray;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-800 text-white flex flex-col items-center min-h-screen">
   <!-- Navigation Bar -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="contact.html">Contact</a>
+  <nav class="w-full bg-gray-900 py-4 fixed top-0 z-50">
+    <div class="container mx-auto flex justify-center">
+      <a href="index.html" class="mx-4 text-white hover:underline">Home</a>
+      <a href="about.html" class="mx-4 text-white hover:underline">About</a>
+      <a href="privacy-policy.html" class="mx-4 text-white hover:underline">Privacy Policy</a>
+      <a href="contact.html" class="mx-4 text-white hover:underline">Contact</a>
+    </div>
   </nav>
 
-  <main>
-    <h1>Catch the Target Game</h1>
-    <h2 id="timer">Time Left: 30</h2>
-    <h2 id="score">Score: 0</h2>
-    <div id="gameContainer"></div>
-    <button id="startGame">Start Game</button>
+  <main class="container mx-auto mt-24 text-center">
+    <h1 class="text-4xl font-bold mb-4">Catch the Target Game</h1>
+    <h2 id="timer" class="text-2xl mb-2">Time Left: 30</h2>
+    <h2 id="score" class="text-2xl mb-6">Score: 0</h2>
+    <div id="gameContainer" class="relative w-full max-w-lg h-96 border-2 border-white bg-gray-700 rounded-lg mx-auto overflow-hidden"></div>
+    <button id="startGame" class="mt-6 px-6 py-3 bg-red-600 text-white font-bold rounded hover:bg-red-700">Start Game</button>
 
     <!-- Google AdSense Ad -->
-    <div style="margin-top: 20px; width: 100%; text-align: center;">
+    <div class="mt-10">
       <ins class="adsbygoogle"
            style="display:block; width:300px; height:250px; margin: 0 auto;"
            data-ad-client="ca-pub-6864162159215022"
@@ -141,8 +39,8 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Bab Games. <a href="privacy-policy.html">Privacy Policy</a> | <a href="contact.html">Contact Us</a></p>
+  <footer class="mt-12 py-6 bg-gray-900 w-full text-center">
+    <p>&copy; 2025 Bab Games <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="contact.html" class="text-blue-400 hover:underline">Contact Us</a></p>
   </footer>
 
   <script>
@@ -163,7 +61,7 @@
 
     function createTarget() {
       const target = document.createElement('div');
-      target.classList.add('target');
+      target.classList.add('absolute', 'bg-red-600', 'rounded-full', 'w-12', 'h-12', 'cursor-pointer');
       const { x, y } = getRandomPosition();
       target.style.left = `${x}px`;
       target.style.top = `${y}px`;
@@ -180,7 +78,7 @@
         if (gameContainer.contains(target)) {
           gameContainer.removeChild(target);
         }
-      }, 2000); // Target disappears after 2 seconds
+      }, 2000);
     }
 
     function startGame() {
