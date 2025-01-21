@@ -1,79 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-adsense-account" content="ca-pub-6864162159215022">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022"
-          crossorigin="anonymous"></script>
-  <title>Catch the Target Game</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Fullscreen styling */
-    .fullscreen {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      z-index: 10;
-    }
-
-    /* Fullscreen modal */
-    .fullscreen-mode {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-6864162159215022">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022" crossorigin="anonymous"></script>
+    <title>Catch the Target Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to external styles if you have custom styles -->
 </head>
-<body class="bg-gray-800 text-white flex flex-col items-center min-h-screen overflow-hidden">
-  <!-- Navigation Bar -->
-  <nav class="w-full bg-gray-900 py-4 fixed top-0 z-50">
-    <div class="container mx-auto flex justify-center">
-      <a href="index.html" class="mx-4 text-white hover:underline">Home</a>
-      <a href="privacy-policy.html" class="mx-4 text-white hover:underline">Privacy Policy</a>
-      <a href="contact.html" class="mx-4 text-white hover:underline">Contact</a>
-    </div>
-  </nav>
 
-  <main class="relative container mx-auto flex justify-center items-center min-h-screen">
-    <div id="gameContainer" class="relative w-full h-full max-w-screen-lg max-h-screen overflow-hidden"></div>
+<body class="bg-gray-800 text-white flex flex-col items-center min-h-screen">
 
-    <!-- Fullscreen button -->
-    <button id="fullscreenBtn" class="fullscreen">Enter Fullscreen</button>
+    <!-- Navigation Bar -->
+    <nav class="w-full bg-gray-900 py-4 fixed top-0 z-50">
+        <div class="container mx-auto flex justify-center">
+            <a href="index.html" class="mx-4 text-white hover:underline">Home</a>
+            <a href="privacy-policy.html" class="mx-4 text-white hover:underline">Privacy Policy</a>
+            <a href="contact.html" class="mx-4 text-white hover:underline">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <main id="gameMain" class="container mx-auto mt-24 text-center flex-grow">
+        <!-- Fullscreen Toggle Button -->
+        <button id="fullscreenBtn" class="fixed top-5 right-5 px-4 py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 z-10">Fullscreen</button>
+
+        <div id="gameContainer" class="relative w-full h-screen flex items-center justify-center border-2 border-white bg-gray-700 rounded-lg overflow-hidden">
+            <!-- Game content will be inserted by the game.js -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-6 bg-gray-900 w-full text-center">
+        <p>&copy; 2025 Bab Games <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="contact.html" class="text-blue-400 hover:underline">Contact Us</a></p>
+    </footer>
 
     <!-- Google AdSense Ad -->
     <div class="mt-10">
-      <ins class="adsbygoogle"
-           style="display:block; width:300px; height:250px; margin: 0 auto;"
-           data-ad-client="ca-pub-6864162159215022"
-           data-ad-slot="1234567890"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+        <ins class="adsbygoogle" style="display:block; width:300px; height:250px; margin: 0 auto;" data-ad-client="ca-pub-6864162159215022" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
-  </main>
 
-  <footer class="mt-12 py-6 bg-gray-900 w-full text-center">
-    <p>&copy; 2025 Bab Games <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="contact.html" class="text-blue-400 hover:underline">Contact Us</a></p>
-  </footer>
-
-  <!-- Link to External Game Script -->
-  <script src="game.js"></script>
+    <!-- Game Script -->
+    <script src="game.js"></script>
 </body>
+
 </html>
