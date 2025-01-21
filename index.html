@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-adsense-account" content="ca-pub-6864162159215022">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022"
+          crossorigin="anonymous"></script>
   <title>Catch the Target Game</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -44,65 +44,7 @@
     <p>&copy; 2025 Bab Games <a href="privacy-policy.html" class="text-blue-400 hover:underline">Privacy Policy</a> | <a href="contact.html" class="text-blue-400 hover:underline">Contact Us</a></p>
   </footer>
 
-  <script>
-    const gameContainer = document.getElementById('gameContainer');
-    const scoreDisplay = document.getElementById('score');
-    const timerDisplay = document.getElementById('timer');
-    const startButton = document.getElementById('startGame');
-
-    let score = 0;
-    let timeLeft = 30;
-    let gameInterval, timerInterval;
-
-    function getRandomPosition() {
-      const x = Math.random() * (gameContainer.clientWidth - 50);
-      const y = Math.random() * (gameContainer.clientHeight - 50);
-      return { x, y };
-    }
-
-    function createTarget() {
-      const target = document.createElement('div');
-      target.classList.add('absolute', 'bg-red-600', 'rounded-full', 'w-12', 'h-12', 'cursor-pointer');
-      const { x, y } = getRandomPosition();
-      target.style.left = `${x}px`;
-      target.style.top = `${y}px`;
-
-      target.addEventListener('click', () => {
-        score += 10;
-        scoreDisplay.textContent = `Score: ${score}`;
-        gameContainer.removeChild(target);
-      });
-
-      gameContainer.appendChild(target);
-
-      setTimeout(() => {
-        if (gameContainer.contains(target)) {
-          gameContainer.removeChild(target);
-        }
-      }, 2000);
-    }
-
-    function startGame() {
-      score = 0;
-      timeLeft = 30;
-      scoreDisplay.textContent = `Score: ${score}`;
-      timerDisplay.textContent = `Time Left: ${timeLeft}`;
-
-      startButton.disabled = true;
-      gameInterval = setInterval(createTarget, 1000);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        timerDisplay.textContent = `Time Left: ${timeLeft}`;
-        if (timeLeft <= 0) {
-          clearInterval(gameInterval);
-          clearInterval(timerInterval);
-          startButton.disabled = false;
-          alert(`Game Over! Your score is ${score}`);
-        }
-      }, 1000);
-    }
-
-    startButton.addEventListener('click', startGame);
-  </script>
+  <!-- Link to External Game Script -->
+  <script src="game.js"></script>
 </body>
 </html>
