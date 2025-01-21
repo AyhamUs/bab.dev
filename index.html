@@ -8,8 +8,38 @@
           crossorigin="anonymous"></script>
   <title>Catch the Target Game</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Fullscreen styling */
+    .fullscreen {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 10;
+    }
+
+    /* Fullscreen modal */
+    .fullscreen-mode {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+  </style>
 </head>
-<body class="bg-gray-800 text-white flex flex-col items-center min-h-screen">
+<body class="bg-gray-800 text-white flex flex-col items-center min-h-screen overflow-hidden">
   <!-- Navigation Bar -->
   <nav class="w-full bg-gray-900 py-4 fixed top-0 z-50">
     <div class="container mx-auto flex justify-center">
@@ -19,12 +49,11 @@
     </div>
   </nav>
 
-  <main class="container mx-auto mt-24 text-center">
-    <h1 class="text-4xl font-bold mb-4">Catch the Target Game</h1>
-    <h2 id="timer" class="text-2xl mb-2">Time Left: 30</h2>
-    <h2 id="score" class="text-2xl mb-6">Score: 0</h2>
-    <div id="gameContainer" class="relative w-full max-w-lg h-96 border-2 border-white bg-gray-700 rounded-lg mx-auto overflow-hidden"></div>
-    <button id="startGame" class="mt-6 px-6 py-3 bg-red-600 text-white font-bold rounded hover:bg-red-700">Start Game</button>
+  <main class="relative container mx-auto flex justify-center items-center min-h-screen">
+    <div id="gameContainer" class="relative w-full h-full max-w-screen-lg max-h-screen overflow-hidden"></div>
+
+    <!-- Fullscreen button -->
+    <button id="fullscreenBtn" class="fullscreen">Enter Fullscreen</button>
 
     <!-- Google AdSense Ad -->
     <div class="mt-10">
