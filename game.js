@@ -1,11 +1,11 @@
 const gameContainer = document.getElementById('gameContainer');
-const scoreDisplay = document.getElementById('score');
+const moneyDisplay = document.getElementById('score');  // Now showing money instead of score
 const timerDisplay = document.getElementById('timer');
 const fullscreenBtn = document.getElementById('fullscreenBtn');
 const startMenu = document.createElement('div');
 const upgradeMenu = document.createElement('div');
 
-let score = 0;
+let money = 0;
 let timeLeft = 30;
 let gameInterval, timerInterval, powerUpInterval;
 let targetSpeed = 1000; // Time in ms between targets appearing
@@ -17,14 +17,33 @@ let upgrades = {
   timeFreezeChance: 0.2, // 20% chance to freeze time
 };
 
+// Load money from cookies
+function loadMoney() {
+  const cookie = document.cookie.split('; ').find(row => row.startsWith('money='));
+  if (cookie) {
+    money = parseInt(cookie.split('=')[1]);
+  } else {
+    money = 0; // If no cookie, start with 0 money
+  }
+  moneyDisplay.textContent = `$ ${money}`;
+}
+
+// Save money to cookies
+function saveMoney() {
+  document.cookie = `money=${money}; path=/; max-age=31536000`; // Expires in 1 year
+}
+
 // Start Menu
 function showStartMenu() {
+  loadMoney(); // Load the money from the cookie
+
   // Cleanup the game state if returning to the menu
   cleanupGame();
 
   startMenu.innerHTML = `
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center bg-gray-900 p-6 rounded-lg">
       <h2 class="text-3xl font-bold text-white mb-4">Welcome to Catch the Target!</h2>
+      <h3 class="text-xl text-white mb-4">Your Money: $${money}</h3>
       <button id="startGameBtn" class="px-6 py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700">Start Game</button>
       <button id="shopBtn" class="mt-4 px-6 py-2 bg-green-600 text-white font-bold rounded hover:bg-green-700">Shop (Upgrades)</button>
       <button id="instructionsBtn" class="mt-4 px-6 py-2 bg-yellow-600 text-white font-bold rounded hover:bg-yellow-700">Instructions</button>
@@ -46,9 +65,9 @@ function cleanupGame() {
   clearInterval(powerUpInterval);
 
   // Reset game state
-  score = 0;
+  money = 0;
   timeLeft = 30;
-  scoreDisplay.textContent = `Score: ${score}`;
+  moneyDisplay.textContent = `$ ${money}`;
   timerDisplay.textContent = `Time Left: ${timeLeft}`;
 
   // Clear any existing game elements
@@ -65,11 +84,11 @@ function showUpgradeMenu() {
       <h2 class="text-3xl font-bold text-white mb-4">Upgrades</h2>
       <div class="text-left text-white mb-4">
         <p>Score Boost: +${upgrades.scoreBoost}</p>
-        <button id="scoreBoostBtn" class="w-full mt-2 bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">Upgrade Score Boost (Cost: 100)</button>
+        <button id="scoreBoostBtn" class="w-full mt-2 bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">Upgrade Score Boost (Cost: $100)</button>
         <p>Faster Targets: Speed ${1000 - targetSpeed}ms</p>
-        <button id="fasterTargetsBtn" class="w-full mt-2 bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">Upgrade Speed (Cost: 200)</button>
+        <button id="fasterTargetsBtn" class="w-full mt-2 bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">Upgrade Speed (Cost: $200)</button>
         <p>Time Freeze Chance: ${Math.round(upgrades.timeFreezeChance * 100)}%</p>
-        <button id="timeFreezeBtn" class="w-full mt-2 bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">Upgrade Freeze Chance (Cost: 150)</button>
+        <button id="timeFreezeBtn" class="w-full mt-2 bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">Upgrade Freeze Chance (Cost: $150)</button>
       </div>
       <button id="backBtn" class="mt-4 px-6 py-2 bg-gray-600 text-white font-bold rounded hover:bg-gray-700">Back to Menu</button>
     </div>
@@ -91,7 +110,7 @@ function showInstructions() {
   instructions.innerHTML = `
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center bg-gray-900 p-6 rounded-lg">
       <h2 class="text-3xl font-bold text-white mb-4">Instructions</h2>
-      <p class="text-white">Click on the targets to score points!</p>
+      <p class="text-white">Click on the targets to earn money!</p>
       <p class="text-white mt-2">Upgrade your abilities in the shop to make the game easier!</p>
       <button id="backToMenu" class="mt-4 px-6 py-2 bg-gray-600 text-white font-bold rounded hover:bg-gray-700">Back to Menu</button>
     </div>
@@ -128,13 +147,13 @@ document.addEventListener('fullscreenchange', () => {
 function startGame() {
   cleanupGame(); // Clear any previous game state
 
-  score = 0;
+  money = 0;
   timeLeft = 30;
   scoreMultiplier = 1;
   upgrades.scoreBoost = 0;
   upgrades.fasterTargets = 0;
   upgrades.timeFreezeChance = 0.2;
-  scoreDisplay.textContent = `Score: ${score}`;
+  moneyDisplay.textContent = `$ ${money}`;
   timerDisplay.textContent = `Time Left: ${timeLeft}`;
   gameContainer.innerHTML = ''; // Clear any previous game
 
@@ -155,8 +174,17 @@ function endGame() {
   clearInterval(gameInterval);
   clearInterval(timerInterval);
   clearInterval(powerUpInterval);
-  alert(`Game Over! Your score is ${score}`);
-  showStartMenu(); // Show the start menu after game over
+  
+  saveMoney(); // Save money to cookies
+  alert(`Game Over! Your money: $${money}`);
+  
+  // Show "Back to Menu" button
+  const backToMenuButton = document.createElement('button');
+  backToMenuButton.textContent = 'Back to Menu';
+  backToMenuButton.classList.add('mt-4', 'px-6', 'py-2', 'bg-gray-600', 'text-white', 'font-bold', 'rounded', 'hover:bg-gray-700');
+  backToMenuButton.addEventListener('click', showStartMenu);
+
+  gameContainer.appendChild(backToMenuButton);
 }
 
 // Function to create targets
@@ -169,8 +197,8 @@ function createTarget() {
   target.style.top = `${y}px`;
 
   target.addEventListener('click', () => {
-    score += (10 * scoreMultiplier);
-    scoreDisplay.textContent = `Score: ${score}`;
+    money += (10 * scoreMultiplier);  // Update money
+    moneyDisplay.textContent = `$ ${money}`;
     gameContainer.removeChild(target);
   });
 
@@ -195,7 +223,7 @@ function createPowerUp() {
   powerUp.addEventListener('click', () => {
     // Apply some game-changing power-up logic here (e.g., freezing time, increasing score, etc.)
     scoreMultiplier *= 2;
-    scoreDisplay.textContent = `Score: ${score}`;
+    moneyDisplay.textContent = `$ ${money}`;
     gameContainer.removeChild(powerUp);
   });
 
