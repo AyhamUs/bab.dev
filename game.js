@@ -1,7 +1,6 @@
 const gameContainer = document.getElementById('gameContainer');
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
-const startButton = document.getElementById('startGame');
 const startMenu = document.createElement('div');
 const upgradeMenu = document.createElement('div');
 
@@ -83,152 +82,25 @@ function showInstructions() {
   });
 }
 
-// Upgrade Logic
-function upgrade(upgradeType) {
-  const cost = getUpgradeCost(upgradeType);
-  if (score >= cost) {
-    score -= cost;
-    upgrades[upgradeType]++;
-    updateUpgradeUI(upgradeType);
-    scoreDisplay.textContent = `Score: ${score}`;
-    applyUpgrades();
-  } else {
-    alert("Not enough score to upgrade!");
+// Fullscreen Toggle
+document.getElementById('fullscreenBtn').addEventListener('click', () => {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+    document.documentElement.mozRequestFullScreen();
+  } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+    document.documentElement.msRequestFullscreen();
   }
-}
 
-function getUpgradeCost(upgradeType) {
-  if (upgradeType === 'scoreBoost') return 100 * (upgrades.scoreBoost + 1);
-  if (upgradeType === 'fasterTargets') return 200 * (upgrades.fasterTargets + 1);
-  if (upgradeType === 'timeFreezeChance') return 150 * (upgrades.timeFreezeChance + 0.1);
-}
+  // Hide fullscreen button when in fullscreen mode
+  document.getElementById('fullscreenBtn').style.display = 'none';
+});
 
-function updateUpgradeUI(upgradeType) {
-  if (upgradeType === 'scoreBoost') {
-    document.querySelector('#scoreBoostBtn').textContent = `Upgrade Score Boost (Cost: ${getUpgradeCost('scoreBoost')})`;
+// Detect fullscreen change
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) {
+    document.getElementById('fullscreenBtn').style.display = 'block'; // Show button again when exiting fullscreen
   }
-  if (upgradeType === 'fasterTargets') {
-    document.querySelector('#fasterTargetsBtn').textContent = `Upgrade Speed (Cost: ${getUpgradeCost('fasterTargets')})`;
-  }
-  if (upgradeType === 'timeFreezeChance') {
-    document.querySelector('#timeFreezeBtn').textContent = `Upgrade Freeze Chance (Cost: ${getUpgradeCost('timeFreezeChance')})`;
-  }
-}
-
-function applyUpgrades() {
-  scoreMultiplier = 1 + upgrades.scoreBoost * 0.1;
-  targetSpeed = Math.max(500, 1000 - upgrades.fasterTargets * 100); // Max speed is 500ms
-  upgrades.timeFreezeChance = Math.min(0.8, upgrades.timeFreezeChance); // Cap freeze chance to 80%
-}
-
-function getRandomPosition() {
-  const x = Math.random() * (gameContainer.clientWidth - upgrades.targetSize);
-  const y = Math.random() * (gameContainer.clientHeight - upgrades.targetSize);
-  return { x, y };
-}
-
-function createTarget() {
-  const target = document.createElement('div');
-  target.classList.add('absolute', 'bg-red-600', 'rounded-full', 'cursor-pointer');
-  target.style.width = `${upgrades.targetSize}px`;
-  target.style.height = `${upgrades.targetSize}px`;
-
-  const { x, y } = getRandomPosition();
-  target.style.left = `${x}px`;
-  target.style.top = `${y}px`;
-
-  target.addEventListener('click', () => {
-    score += 10 * scoreMultiplier;
-    scoreDisplay.textContent = `Score: ${score}`;
-    target.style.animation = 'scaleUp 0.2s ease-out';
-    gameContainer.removeChild(target);
-  });
-
-  gameContainer.appendChild(target);
-
-  // Animation for target disappearing
-  setTimeout(() => {
-    if (gameContainer.contains(target)) {
-      target.style.animation = 'scaleDown 0.2s ease-out';
-      setTimeout(() => gameContainer.removeChild(target), 200);
-    }
-  }, 2000);
-}
-
-function createPowerUp() {
-  const powerUp = document.createElement('div');
-  powerUp.classList.add('absolute', 'bg-blue-600', 'rounded-full', 'cursor-pointer');
-  const { x, y } = getRandomPosition();
-  powerUp.style.left = `${x}px`;
-  powerUp.style.top = `${y}px`;
-
-  powerUp.addEventListener('click', () => {
-    if (Math.random() < upgrades.timeFreezeChance) {
-      activateTimeFreeze();
-    } else {
-      activateScoreMultiplier();
-    }
-    gameContainer.removeChild(powerUp);
-  });
-
-  gameContainer.appendChild(powerUp);
-
-  setTimeout(() => {
-    if (gameContainer.contains(powerUp)) {
-      gameContainer.removeChild(powerUp);
-    }
-  }, 2000);
-}
-
-function activateTimeFreeze() {
-  clearInterval(timerInterval);
-  setTimeout(() => {
-    timerInterval = setInterval(() => {
-      timeLeft--;
-      timerDisplay.textContent = `Time Left: ${timeLeft}`;
-      if (timeLeft <= 0) {
-        endGame();
-      }
-    }, 1000);
-  }, 3000); // Freeze for 3 seconds
-}
-
-function activateScoreMultiplier() {
-  scoreMultiplier = 2;
-  setTimeout(() => {
-    scoreMultiplier = 1;
-  }, 5000); // Score multiplier for 5 seconds
-}
-
-function startGame() {
-  score = 0;
-  timeLeft = 30;
-  scoreMultiplier = 1;
-  upgrades.scoreBoost = 0;
-  upgrades.fasterTargets = 0;
-  upgrades.timeFreezeChance = 0.2;
-  scoreDisplay.textContent = `Score: ${score}`;
-  timerDisplay.textContent = `Time Left: ${timeLeft}`;
-  gameContainer.innerHTML = ''; // Clear any previous game
-
-  startMenu.style.display = 'none'; // Hide the start menu
-  gameInterval = setInterval(createTarget, targetSpeed);
-  powerUpInterval = setInterval(createPowerUp, 5000); // Power-ups appear every 5 seconds
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    timerDisplay.textContent = `Time Left: ${timeLeft}`;
-    if (timeLeft <= 0) {
-      endGame();
-    }
-  }, 1000);
-}
-
-function endGame() {
-  clearInterval(gameInterval);
-  clearInterval(timerInterval);
-  clearInterval(powerUpInterval);
-  alert(`Game Over! Your score is ${score}`);
-  showStartMenu(); // Show the start menu after game over
-}
-
-document.addEventListener('DOMContentLoaded', showStartMenu);
+});
