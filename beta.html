@@ -26,184 +26,213 @@
 
   <style>
     html, body {
-      height: 100%;
       margin: 0;
-      background: linear-gradient(135deg, #ff7b9d, #ff6f91);
-      color: #ffffff;
+      padding: 0;
+      background-color: white;
+      font-family: 'Arial', sans-serif;
+      color: #333;
     }
 
-    body {
+    /* Header Styles */
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 20px 0;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    /* Navigation Styles */
+    nav ul {
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      justify-content: center;
+      padding: 0;
+      list-style: none;
     }
 
-    main {
-      flex: 1;
+    nav ul li {
+      margin: 0 15px;
     }
 
-    footer {
-      margin-top: auto;
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s ease;
     }
 
-    .game-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-color: #ff4e5b;
+    nav ul li a:hover {
+      color: #f0f0f0;
     }
 
-    .game-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
+    /* Search Bar Styles */
     .search-bar {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 20px auto;
+      border: 2px solid #007BFF;
+      border-radius: 5px;
+      font-size: 1rem;
       transition: all 0.3s ease;
     }
 
     .search-bar:focus {
       outline: none;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      border-color: #0056b3;
+    }
+
+    /* Game Card Styles */
+    .game-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .game-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .game-card h4 {
+      color: #007BFF;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #f1f1f1;
+      color: #666;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: #007BFF;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #0056b3;
+    }
+
+    footer .social-links {
+      margin-top: 15px;
+    }
+
+    footer .social-links a {
+      margin: 0 10px;
+      font-size: 1.5rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .game-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .game-cards-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-<body class="font-sans bg-gradient-to-r from-pink-400 to-pink-600">
+<body>
 
   <!-- Header -->
-  <header class="bg-pink-900 shadow-xl">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <h1 class="text-4xl font-bold text-pink-300">Bab Games</h1>
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="#" class="text-white hover:text-pink-400 transition-colors">Home</a></li>
-          <li><a href="mailto:babgames@usa.com" class="text-white hover:text-pink-400 transition-colors">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header>
+    <h1>Bab Games</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="mailto:babgames@usa.com">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-12">
-    <section class="text-center mb-12">
-      <h2 class="text-5xl font-bold mb-6 text-pink-200">Welcome to Bab Games</h2>
-      <p class="text-lg text-gray-100 mb-8">Play the coolest games online. Start your adventure today!</p>
-      <input
-        type="text"
-        id="search"
-        placeholder="Search games..."
-        class="search-bar w-full max-w-md px-4 py-2 rounded-lg bg-pink-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-pink-500"
-      />
-    </section>
+    <!-- Search Bar -->
+    <input
+      type="text"
+      id="search"
+      placeholder="Search games..."
+      class="search-bar"
+    />
 
-    <section>
-      <h3 class="text-2xl font-semibold mb-8 text-pink-200">Games Available</h3>
-      <div id="game-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <!-- Game Cards Section -->
+    <section class="text-center mb-12">
+      <h2 class="text-3xl font-semibold mb-6">Games Available</h2>
+      <div id="game-list" class="grid game-cards-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
         <!-- Game Card: 2048 -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/2048" class="block text-center">
-            <img src="images/2048.jpg" alt="2048" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">2048</h4>
-            <p class="text-gray-100 mt-2">A fun and challenging puzzle game!</p>
+        <div class="game-card">
+          <a href="/2048">
+            <img src="images/2048.jpg" alt="2048" />
+            <h4>2048</h4>
+            <p>A fun and challenging puzzle game!</p>
           </a>
         </div>
 
         <!-- Game Card: Retrobowl -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/Retrobowl" class="block text-center">
-            <img src="images/retrobowl.jpg" alt="Retrobowl" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Retrobowl</h4>
-            <p class="text-gray-100 mt-2">A retro-style football game with a lot of fun!</p>
+        <div class="game-card">
+          <a href="/Retrobowl">
+            <img src="images/retrobowl.jpg" alt="Retrobowl" />
+            <h4>Retrobowl</h4>
+            <p>A retro-style football game with a lot of fun!</p>
           </a>
         </div>
 
         <!-- Game Card: Cookie Clicker -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/CookieClicker" class="block text-center">
-            <img src="images/cookie-clicker.jpg" alt="Cookie Clicker" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Cookie Clicker</h4>
-            <p class="text-gray-100 mt-2">Click to bake cookies and upgrade your bakery!</p>
+        <div class="game-card">
+          <a href="/CookieClicker">
+            <img src="images/cookie-clicker.jpg" alt="Cookie Clicker" />
+            <h4>Cookie Clicker</h4>
+            <p>Click to bake cookies and upgrade your bakery!</p>
           </a>
         </div>
 
         <!-- Game Card: Block Blast -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/blockblast" class="block text-center">
-            <img src="images/block-blast.jpg" alt="Block Blast" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Block Blast</h4>
-            <p class="text-gray-100 mt-2">A fun and strategic block puzzle game!</p>
+        <div class="game-card">
+          <a href="/blockblast">
+            <img src="images/block-blast.jpg" alt="Block Blast" />
+            <h4>Block Blast</h4>
+            <p>A fun and strategic block puzzle game!</p>
           </a>
         </div>
 
-        <!-- Game Card: Slope -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/Slope" class="block text-center">
-            <img src="images/slope.jpg" alt="Slope" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Slope</h4>
-            <p class="text-gray-100 mt-2">A fast-paced, endless running game!</p>
-          </a>
-        </div>
+        <!-- Add additional game cards here -->
 
-        <!-- Game Card: 1v1.lol -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/1v1lol" class="block text-center">
-            <img src="images/1v1lol.jpg" alt="1v1.lol" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">1v1.lol</h4>
-            <p class="text-gray-100 mt-2">A fast-paced battle royale with building and shooting!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: SnowRider3D -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/snowrider" class="block text-center">
-            <img src="/snowrider/snow-rider-3d.png" alt="Snowrider 3D" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Snowrider 3D</h4>
-            <p class="text-gray-100 mt-2">Slide down a giant mountain!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: Flappy Bird -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/flappy-bird" class="block text-center">
-            <img src="images/flappy-bird.jpg" alt="Flappy Bird" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Flappy Bird</h4>
-            <p class="text-gray-100 mt-2">Tap to make the bird fly and avoid obstacles!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: Basketball Legends -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/basketball-legends" class="block text-center">
-            <img src="images/basketball-legends.jpg" alt="Basketball Legends" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Basketball Legends</h4>
-            <p class="text-gray-100 mt-2">Play Basketball with 2 players!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: Geometry Dash -->
-        <div class="game-card rounded-lg shadow-md p-4">
-          <a href="/geometrydash" class="block text-center">
-            <img src="images/geometry-dash.jpg" alt="Geometry Dash" class="w-24 h-24 mx-auto mb-4 rounded" />
-            <h4 class="text-xl font-semibold text-pink-400">Geometry Dash</h4>
-            <p class="text-gray-100 mt-2">Jump and fly through danger in this rhythm-based action platformer!</p>
-          </a>
-        </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-pink-900 py-12 w-full">
-    <div class="container mx-auto px-6">
-      <div class="mb-8">
-        <h3 class="text-xl font-semibold text-pink-400 mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-300 hover:text-pink-400 transition-colors">Home</a></li>
-          <li><a href="privacy-policy.html" class="text-gray-300 hover:text-pink-400 transition-colors">Privacy Policy</a></li>
-          <li><a href="mailto:babgames@usa.com" class="text-gray-300 hover:text-pink-400 transition-colors">Contact</a></li>
-        </ul>
-      </div>
-      <div class="text-center text-gray-500">
-        © 2025 Bab Games. All Rights Reserved.
-      </div>
+  <footer>
+    <p>&copy; 2025 Bab Games. All Rights Reserved.</p>
+    <p><a href="privacy-policy.html">Privacy Policy</a></p>
+    <div class="social-links">
+      <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
 
