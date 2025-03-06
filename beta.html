@@ -10,11 +10,6 @@
   <meta property="og:description" content="Play the coolest games online at Bab Games! From puzzles to action games, we have it all.">
   <meta property="og:image" content="images/logo.png">
   <meta property="og:url" content="https://www.babgames.com">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@babgames">
-  <meta name="twitter:title" content="Bab Games - Play Fun Online Games">
-  <meta name="twitter:description" content="Play the coolest games online at Bab Games!">
-  <meta name="twitter:image" content="images/logo.png">
 
   <title>Bab Games - Play the Coolest Online Games</title>
 
@@ -58,7 +53,7 @@
     .navbar-text {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: flex-start;
       text-align: left;
     }
 
@@ -66,11 +61,6 @@
       font-size: 2rem;
       font-weight: bold;
       text-align: left;
-    }
-
-    .navbar-text p {
-      font-size: 1rem;
-      color: #f0f0f0;
     }
 
     /* Navbar Links */
@@ -201,11 +191,11 @@
   <!-- Header -->
   <header>
     <div class="container">
-
-      <!-- Navbar Text -->
-      <div class="navbar-text">
-        <h1>Bab Games</h1>
-        <p>Play the coolest games online! Adventure, fun, and more await.</p>
+      <!-- Logo Section -->
+      <div class="logo">
+        <a href="/">
+          <img src="images/logo.png" alt="Bab Games Logo">
+        </a>
       </div>
 
       <!-- Navbar Links -->
@@ -220,14 +210,16 @@
 
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-12">
-    <!-- Search Bar -->
+    <!-- Search Text -->
     <center>
-    <input
-      type="text"
-      id="search"
-      placeholder="Search games..."
-      class="search-bar"
-    /></center>
+      <h2 class="text-xl font-semibold mb-4">Search Games</h2>
+      <input
+        type="text"
+        id="search"
+        placeholder="Search games..."
+        class="search-bar"
+      />
+    </center>
 
     <!-- Game Cards Section -->
     <section class="text-center mb-12">
