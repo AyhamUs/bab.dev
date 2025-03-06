@@ -20,7 +20,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022" crossorigin="anonymous"></script>
 
 </head>
-<body class="bg-white font-sans text-gray-800">
+<body class="bg-white font-sans text-gray-800 flex flex-col min-h-screen">
 
   <!-- Header -->
   <header class="bg-blue-600 text-white shadow-md">
@@ -37,7 +37,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-6 py-12">
+  <main class="flex-1 max-w-7xl mx-auto px-6 py-12">
     <!-- Search Bar -->
     <div class="text-center mb-8">
       <h2 class="text-xl font-semibold mb-4">Search Games</h2>
@@ -45,7 +45,7 @@
         type="text"
         id="search"
         placeholder="Search games..."
-        class="w-full max-w-md px-4 py-2 border-2 border-blue-600 rounded-lg focus:outline-none focus:border-blue-500"
+        class="w-full max-w-md px-4 py-2 border-2 border-blue-600 rounded-lg focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out transform hover:scale-105"
       />
     </div>
 
@@ -53,7 +53,7 @@
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       
       <!-- Game Card: 2048 -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/2048" class="flex items-center p-4">
           <img src="images/2048.jpg" alt="2048" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -64,7 +64,7 @@
       </div>
 
       <!-- Game Card: Retrobowl -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/Retrobowl" class="flex items-center p-4">
           <img src="images/retrobowl.jpg" alt="Retrobowl" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -75,7 +75,7 @@
       </div>
 
       <!-- Game Card: Cookie Clicker -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/CookieClicker" class="flex items-center p-4">
           <img src="images/cookie-clicker.jpg" alt="Cookie Clicker" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -86,7 +86,7 @@
       </div>
 
       <!-- Game Card: Block Blast -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/blockblast" class="flex items-center p-4">
           <img src="images/block-blast.jpg" alt="Block Blast" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -102,7 +102,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 text-gray-600 py-8">
+  <footer class="bg-gray-100 text-gray-600 py-8 mt-auto">
     <div class="text-center">
       <p>&copy; 2025 Bab Games. All Rights Reserved.</p>
       <p><a href="privacy-policy.html" class="text-blue-600 hover:text-blue-500">Privacy Policy</a></p>
