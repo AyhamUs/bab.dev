@@ -19,276 +19,110 @@
   <!-- Google Adsense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864162159215022" crossorigin="anonymous"></script>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: white;
-      font-family: 'Arial', sans-serif;
-      color: #333;
-    }
-
-    /* Header Styles */
-    header {
-      background-color: #007BFF;
-      color: white;
-      padding: 20px 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
-    }
-
-    /* Logo Styling */
-    .logo img {
-      width: 50px;
-      height: auto;
-    }
-
-    /* Navbar Text */
-    .navbar-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-    }
-
-    .navbar-text h1 {
-      font-size: 2rem;
-      font-weight: bold;
-      text-align: left;
-    }
-
-    /* Navbar Links */
-    nav ul {
-      display: flex;
-      justify-content: flex-end;
-      list-style: none;
-      padding: 0;
-    }
-
-    nav ul li {
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      background-color: #0056b3;
-      color: #f0f0f0;
-    }
-
-    /* Search Bar Styles */
-    .search-bar {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px;
-      margin: 20px auto;
-      border: 2px solid #007BFF;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .search-bar:focus {
-      outline: none;
-      border-color: #0056b3;
-    }
-
-    /* Game Card Styles */
-    .game-card {
-      background-color: #f9f9f9;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .game-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .game-card img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .game-card h4 {
-      color: #007BFF;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    /* Footer Styles */
-    footer {
-      background-color: #f1f1f1;
-      color: #666;
-      padding: 30px 0;
-      text-align: center;
-    }
-
-    footer a {
-      color: #007BFF;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #0056b3;
-    }
-
-    footer .social-links {
-      margin-top: 15px;
-    }
-
-    footer .social-links a {
-      margin: 0 10px;
-      font-size: 1.5rem;
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      .game-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .game-cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .navbar-text {
-        align-items: center;
-        text-align: center;
-      }
-    }
-  </style>
 </head>
-<body>
+<body class="bg-white font-sans text-gray-800">
 
   <!-- Header -->
-  <header>
-    <div class="container">
-      <!-- Logo Section -->
-      <div class="logo">
-        <a href="/">
-          <img src="images/logo.png" alt="Bab Games Logo">
-        </a>
-      </div>
-
-      <!-- Navbar Links -->
+  <header class="bg-blue-600 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Navbar -->
+      <h1 class="text-2xl font-bold">Bab Games</h1>
       <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="mailto:babgames@usa.com">Contact</a></li>
+        <ul class="flex space-x-8">
+          <li><a href="#" class="hover:text-gray-200">Home</a></li>
+          <li><a href="mailto:babgames@usa.com" class="hover:text-gray-200">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="container mx-auto px-6 py-12">
-    <!-- Search Text -->
-    <center>
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Search Bar -->
+    <div class="text-center mb-8">
       <h2 class="text-xl font-semibold mb-4">Search Games</h2>
       <input
         type="text"
         id="search"
         placeholder="Search games..."
-        class="search-bar"
+        class="w-full max-w-md px-4 py-2 border-2 border-blue-600 rounded-lg focus:outline-none focus:border-blue-500"
       />
-    </center>
+    </div>
 
     <!-- Game Cards Section -->
-    <section class="text-center mb-12">
-      <h2 class="text-3xl font-semibold mb-6">Games Available</h2>
-      <div id="game-list" class="grid game-cards-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        
-        <!-- Game Card: 2048 -->
-        <div class="game-card">
-          <a href="/2048">
-            <img src="images/2048.jpg" alt="2048" />
-            <h4>2048</h4>
-            <p>A fun and challenging puzzle game!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: Retrobowl -->
-        <div class="game-card">
-          <a href="/Retrobowl">
-            <img src="images/retrobowl.jpg" alt="Retrobowl" />
-            <h4>Retrobowl</h4>
-            <p>A retro-style football game with a lot of fun!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: Cookie Clicker -->
-        <div class="game-card">
-          <a href="/CookieClicker">
-            <img src="images/cookie-clicker.jpg" alt="Cookie Clicker" />
-            <h4>Cookie Clicker</h4>
-            <p>Click to bake cookies and upgrade your bakery!</p>
-          </a>
-        </div>
-
-        <!-- Game Card: Block Blast -->
-        <div class="game-card">
-          <a href="/blockblast">
-            <img src="images/block-blast.jpg" alt="Block Blast" />
-            <h4>Block Blast</h4>
-            <p>A fun and strategic block puzzle game!</p>
-          </a>
-        </div>
-
-        <!-- Add additional game cards here -->
-
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      
+      <!-- Game Card: 2048 -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <a href="/2048" class="flex items-center p-4">
+          <img src="images/2048.jpg" alt="2048" class="w-20 h-20 object-cover rounded-lg mr-4">
+          <div class="flex-1">
+            <h4 class="text-xl font-semibold text-blue-600">2048</h4>
+            <p class="text-sm text-gray-600">A fun and challenging puzzle game!</p>
+          </div>
+        </a>
       </div>
+
+      <!-- Game Card: Retrobowl -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <a href="/Retrobowl" class="flex items-center p-4">
+          <img src="images/retrobowl.jpg" alt="Retrobowl" class="w-20 h-20 object-cover rounded-lg mr-4">
+          <div class="flex-1">
+            <h4 class="text-xl font-semibold text-blue-600">Retrobowl</h4>
+            <p class="text-sm text-gray-600">A retro-style football game with a lot of fun!</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Game Card: Cookie Clicker -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <a href="/CookieClicker" class="flex items-center p-4">
+          <img src="images/cookie-clicker.jpg" alt="Cookie Clicker" class="w-20 h-20 object-cover rounded-lg mr-4">
+          <div class="flex-1">
+            <h4 class="text-xl font-semibold text-blue-600">Cookie Clicker</h4>
+            <p class="text-sm text-gray-600">Click to bake cookies and upgrade your bakery!</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Game Card: Block Blast -->
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <a href="/blockblast" class="flex items-center p-4">
+          <img src="images/block-blast.jpg" alt="Block Blast" class="w-20 h-20 object-cover rounded-lg mr-4">
+          <div class="flex-1">
+            <h4 class="text-xl font-semibold text-blue-600">Block Blast</h4>
+            <p class="text-sm text-gray-600">A fun and strategic block puzzle game!</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Add additional game cards here -->
+
     </section>
   </main>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Bab Games. All Rights Reserved.</p>
-    <p><a href="privacy-policy.html">Privacy Policy</a></p>
-    <div class="social-links">
-      <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-      <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <footer class="bg-gray-100 text-gray-600 py-8">
+    <div class="text-center">
+      <p>&copy; 2025 Bab Games. All Rights Reserved.</p>
+      <p><a href="privacy-policy.html" class="text-blue-600 hover:text-blue-500">Privacy Policy</a></p>
+      <div class="mt-4">
+        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 mx-2">Facebook</a>
+        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 mx-2">Twitter</a>
+        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 mx-2">Instagram</a>
+      </div>
     </div>
   </footer>
 
   <!-- Search Functionality -->
   <script>
     const searchInput = document.getElementById('search');
-    const gameList = document.getElementById('game-list');
-    const games = gameList.getElementsByClassName('game-card');
-
+    const gameList = document.querySelectorAll('.bg-white');
+    
     searchInput.addEventListener('input', () => {
       const searchTerm = searchInput.value.toLowerCase();
 
-      Array.from(games).forEach(game => {
+      gameList.forEach(game => {
         const gameName = game.querySelector('h4').textContent.toLowerCase();
         if (gameName.includes(searchTerm)) {
           game.style.display = 'block';
