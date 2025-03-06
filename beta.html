@@ -50,10 +50,10 @@
     </div>
 
     <!-- Game Cards Section -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="game-list">
       
       <!-- Game Card: 2048 -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+      <div class="game-card bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/2048" class="flex items-center p-4">
           <img src="images/2048.jpg" alt="2048" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -64,7 +64,7 @@
       </div>
 
       <!-- Game Card: Retrobowl -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+      <div class="game-card bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/Retrobowl" class="flex items-center p-4">
           <img src="images/retrobowl.jpg" alt="Retrobowl" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -75,7 +75,7 @@
       </div>
 
       <!-- Game Card: Cookie Clicker -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+      <div class="game-card bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/CookieClicker" class="flex items-center p-4">
           <img src="images/cookie-clicker.jpg" alt="Cookie Clicker" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -86,7 +86,7 @@
       </div>
 
       <!-- Game Card: Block Blast -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
+      <div class="game-card bg-white shadow-lg rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:scale-105">
         <a href="/blockblast" class="flex items-center p-4">
           <img src="images/block-blast.jpg" alt="Block Blast" class="w-20 h-20 object-cover rounded-lg mr-4">
           <div class="flex-1">
@@ -106,31 +106,28 @@
     <div class="text-center">
       <p>&copy; 2025 Bab Games. All Rights Reserved.</p>
       <p><a href="privacy-policy.html" class="text-blue-600 hover:text-blue-500">Privacy Policy</a></p>
-      <div class="mt-4">
-        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 mx-2">Facebook</a>
-        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 mx-2">Twitter</a>
-        <a href="#" target="_blank" class="text-gray-600 hover:text-gray-800 mx-2">Instagram</a>
-      </div>
     </div>
   </footer>
 
   <!-- Search Functionality -->
   <script>
     const searchInput = document.getElementById('search');
-    const gameList = document.querySelectorAll('.bg-white');
-    
+    const gameList = document.getElementById('game-list');
+    const games = gameList.getElementsByClassName('game-card');
+
     searchInput.addEventListener('input', () => {
       const searchTerm = searchInput.value.toLowerCase();
 
-      gameList.forEach(game => {
+      Array.from(games).forEach(game => {
         const gameName = game.querySelector('h4').textContent.toLowerCase();
         if (gameName.includes(searchTerm)) {
-          game.style.display = 'block';
+          game.style.display = 'block'; // Show matching game card
         } else {
-          game.style.display = 'none';
+          game.style.display = 'none'; // Hide non-matching game card
         }
       });
     });
   </script>
+
 </body>
 </html>
