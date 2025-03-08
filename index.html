@@ -30,7 +30,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   
   <style>
-  html, body {
+ html, body {
   height: 100%; /* Ensure the body and HTML fill the full height of the viewport */
   margin: 0;
   background: #4a148c;
@@ -40,7 +40,7 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes up at least the full height of the viewport */
+  min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
 }
 
 main {
@@ -52,9 +52,12 @@ footer {
   padding: 12px 0;
   text-align: center;
   width: 100%;
-  position: relative;
-  bottom: 0; /* Make sure the footer is positioned at the bottom of the page */
+  position: sticky; /* Use sticky instead of fixed to make the footer stay at the bottom */
+  bottom: 0; /* Pin the footer to the bottom */
+  left: 0;
+  z-index: 10;
 }
+
 
 
     .shine-effect {
