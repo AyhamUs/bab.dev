@@ -30,8 +30,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   
   <style>
-    html, body {
-  height: 100%;
+   html, body {
+  height: 100%; /* Ensure the body and HTML fill the full height of the viewport */
   margin: 0;
   background: #4a148c;
   color: #ffffff;
@@ -48,11 +48,13 @@ main {
 }
 
 footer {
-  background-color: #1a1a1a; /* Match the page's footer background color */
-  padding: 12px 0; /* Adjust padding as per design */
-  text-align: center; /* Center the content */
+  background-color: #1a1a1a; /* Background color for the footer */
+  padding: 12px 0;
+  text-align: center;
   width: 100%;
+  position: relative;
 }
+
 
     .game-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
