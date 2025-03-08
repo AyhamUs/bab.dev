@@ -57,6 +57,28 @@ footer {
 }
 
 
+    .shine-effect {
+  position: relative;
+  display: inline-block;
+  color: #ffffff; /* White text color */
+  background: linear-gradient(90deg, #ff6a00, #ee0979, #ff6a00); /* Gradient for shine effect */
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: shine 1.5s infinite linear; /* Shine animation */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  color: transparent; /* Make the text transparent so the background shows */
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
 
     .game-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -107,7 +129,7 @@ footer {
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-12">
     <section class="text-center mb-12">
-      <h2 class="text-5xl font-bold mb-6 text-white-600">Welcome to Bab Games</h2>
+      <h2 class="text-5xl font-bold mb-6 text-white-600 shine-effect">Welcome to Bab Games</h2>
       <p class="text-lg text-white-600 mb-8">Play the coolest games online. Start your adventure today!</p>
       <input
         type="text"
